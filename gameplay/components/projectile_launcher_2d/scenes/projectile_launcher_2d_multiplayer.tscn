@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://coq2up53pw3pg"]
+
+[ext_resource type="Script" uid="uid://bx5m8iliyh7k2" path="res://gameplay/projectile_launcher_2d/scripts/projectile_launcher_2d_multiplayer.gd" id="1_bvqbm"]
+
+[node name="ProjectileLauncher2dMultiplayer" type="Node"]
+script = ExtResource("1_bvqbm")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
