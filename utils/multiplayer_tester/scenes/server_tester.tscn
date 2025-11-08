@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfll8ruucci3"]
+
+[ext_resource type="Script" uid="uid://c6mnh07mg2icw" path="res://utils/multiplayer_tester/scripts/server_tester.gd" id="1_8337i"]
+
+[node name="ServerTester" type="Node"]
+script = ExtResource("1_8337i")
+port = 7777
+scenarios_directory_path = "res://utils/multiplayer_tester/scenarios/"
+metadata/_custom_type_script = "uid://c6mnh07mg2icw"

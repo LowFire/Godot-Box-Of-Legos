@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://p1plhyvobxr6"]
+
+[ext_resource type="Script" uid="uid://b8ci3m3xbhjdp" path="res://utils/multiplayer_tester/scripts/client_tester.gd" id="1_16k2r"]
+
+[node name="ClientTester" type="Node"]
+script = ExtResource("1_16k2r")
+remote_ip = &"127.0.0.1"
+port = 7777
+scenarios_directory_path = "res://utils/multiplayer_tester/scenarios/"
+metadata/_custom_type_script = "uid://b8ci3m3xbhjdp"
