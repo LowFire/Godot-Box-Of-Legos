@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://vbwapi48ar4h"]
+
+[ext_resource type="Script" path="res://gameplay/components/hit_and_hurt/scripts/hurtbox.gd" id="1_3w1pf"]
+
+[node name="Hurtbox" type="ShapeCast2D"]
+collision_mask = 2147483648
+collide_with_areas = true
+collide_with_bodies = false
+script = ExtResource("1_3w1pf")
+active = true
+hit_rate = 1200
