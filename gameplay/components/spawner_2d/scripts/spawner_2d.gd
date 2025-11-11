@@ -23,16 +23,11 @@ signal scene_changed(p_scene_uid: String)
 ## The path to the node where nodes spawned by this [Spawner2D] will be parented to.
 @export var spawn_path: NodePath:
 	get:
-		if not is_instance_valid(_spawn_node):
-			return NodePath()
-		
-		return _spawn_node.get_path()
+		return _spawn_path
 	set(p_val):
-		if not is_instance_valid(get_node(p_val)):
-			push_error("Failed to set spawn path. Path does not point to a valid node.")
-			return
-		
-		_spawn_node = get_node(p_val)
+		_spawn_path = p_val
+		if is_node_ready():
+			_get_spawn_node()
 
 ## A custom callback that will be called everytime a node is spawned. Callback must take a Node2D
 ## and a generic variant as parameters.
@@ -47,10 +42,15 @@ var spawn_callback: Callable:
 		_spawn_callback = p_val
 
 var _scene: PackedScene
+var _spawn_path: NodePath
 var _spawn_node: Node
 var _spawn_callback: Callable
 var _spawned: Dictionary[int, Node2D]
 var _next_id: int
+
+
+func _ready() -> void:
+	_get_spawn_node()
 
 
 ## Spawns [member scene] into the world at this [Spawner2D]'s global location. [param p_data]
@@ -138,3 +138,7 @@ func _on_node_exit_tree() -> void:
 			var id: int = _spawned.find_key(node)
 			_spawned.erase(id)
 			despawned.emit(node)
+
+
+func _get_spawn_node() -> void:
+	_spawn_node = get_node_or_null(_spawn_path)
