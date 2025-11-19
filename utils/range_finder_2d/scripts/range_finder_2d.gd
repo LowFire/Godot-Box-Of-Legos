@@ -11,17 +11,27 @@ class_name RangeFinder2D
 	set(p_val):
 		_from_target = p_val
 
+@export var to_target: Node2D:
+	get:
+		return _to_target
+	set(p_val):
+		_to_target = p_val
+
 var _max_range: float
 var _from_target: Node2D
+var _to_target: Node2D
 
 
-func is_within_range(p_pos: Vector2) -> bool:
+func is_within_range() -> bool:
 	if not is_instance_valid(_from_target):
 		push_error("Cannot get range. from_target is not valid.")
 		return false
+	if not is_instance_valid(_to_target):
+		return false
 	
 	var from_pos: Vector2 = _from_target.global_position
-	var dist: float = from_pos.distance_to(p_pos)
+	var to_pos: Vector2 = _to_target.global_position
+	var dist: float = from_pos.distance_to(to_pos)
 	return dist <= _max_range
 
 
