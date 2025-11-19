@@ -1,16 +1,23 @@
 extends Node
 class_name RangeFinder2D
+## Used to find the distance between two nodes and then determines if they are within a predetermined
+## range. Useful for things that need to have a set range to them, like interacting, building,
+## ect.
 
+## The max range of this [RangeFinder2D]
 @export_range(0, 10_000, 0.1) var max_range: float:
 	get = _get_max_range,
 	set = _set_max_range
 
+## The target node that we are measuring from. This is required for the range finder to work.
 @export var from_target: Node2D:
 	get:
 		return _from_target
 	set(p_val):
 		_from_target = p_val
 
+## The target we are measuring to. If this is null, [method is_within_range] will always return
+## false
 @export var to_target: Node2D:
 	get:
 		return _to_target
@@ -22,6 +29,8 @@ var _from_target: Node2D
 var _to_target: Node2D
 
 
+## Tests if the distance between [member from_target] and [member to_target] is within the range
+## set by [member max_range]. If either targets are not valid, this will always return false.
 func is_within_range() -> bool:
 	if not is_instance_valid(_from_target):
 		push_error("Cannot get range. from_target is not valid.")
